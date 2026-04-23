@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us — Haya & Noor</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    .page-hero{background:#0d0d0d;padding:80px 40px;text-align:center;color:white;}
+    .page-hero .section-tag{color:#c9a96e;}
+    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:400;color:white;margin:12px 0;}
+    .page-hero p{color:rgba(255,255,255,.7);font-size:16px;max-width:500px;margin:0 auto;}
+    .breadcrumb{text-align:center;padding:14px 40px;font-size:12px;color:#888;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid #eee;}
+    .breadcrumb a{color:#888;}.breadcrumb a:hover{color:#c9a96e;}.breadcrumb span{margin:0 8px;}
+    .contact-section{max-width:1200px;margin:0 auto;padding:80px 40px;display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start;}
+    .contact-info h2{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;margin-bottom:16px;}
+    .contact-info h2 span{color:#c9a96e;font-style:italic;}
+    .contact-info p{font-size:15px;color:#666;line-height:1.9;margin-bottom:36px;}
+    .contact-item{display:flex;gap:16px;margin-bottom:28px;align-items:flex-start;}
+    .contact-icon{width:44px;height:44px;background:#f2ede4;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;}
+    .contact-item h4{font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-weight:600;}
+    .contact-item p{font-size:14px;color:#777;margin:0;line-height:1.7;}
+    .contact-item a{color:#c9a96e;}
+    .contact-hours{background:#f2ede4;padding:24px;margin-top:36px;}
+    .contact-hours h4{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;color:#0d0d0d;}
+    .hours-row{display:flex;justify-content:space-between;font-size:13px;color:#666;padding:6px 0;border-bottom:1px solid #e0d8cc;}
+    .hours-row:last-child{border-bottom:none;}
+    /* Form */
+    .contact-form h2{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;margin-bottom:8px;}
+    .contact-form h2 span{color:#c9a96e;font-style:italic;}
+    .contact-form .subtitle{font-size:14px;color:#888;margin-bottom:32px;}
+    .form-group{margin-bottom:20px;}
+    .form-group label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#555;margin-bottom:8px;}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 16px;border:1px solid #ddd;background:#fafaf8;font-family:'Jost',sans-serif;font-size:14px;outline:none;transition:border-color .3s;resize:vertical;}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:#c9a96e;}
+    .form-group textarea{min-height:140px;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .submit-btn{width:100%;padding:16px;background:#0d0d0d;color:white;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;border:none;cursor:pointer;transition:all .3s;font-family:'Jost',sans-serif;}
+    .submit-btn:hover{background:#c9a96e;color:#0d0d0d;}
+    /* FAQ */
+    .faq-section{background:#fafaf8;padding:80px 40px;border-top:1px solid #eee;}
+    .faq-section .section-heading{text-align:center;margin-bottom:50px;}
+    .faq-section .featured-title{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;}
+    .faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:1100px;margin:0 auto;}
+    .faq-item{background:white;padding:28px;cursor:pointer;border-left:3px solid transparent;transition:border-color .3s;}
+    .faq-item:hover{border-color:#c9a96e;}
+    .faq-q{font-size:15px;font-weight:500;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
+    .faq-q::after{content:'+';font-size:20px;color:#c9a96e;flex-shrink:0;}
+    .faq-a{font-size:14px;color:#777;line-height:1.8;}
+    @media(max-width:900px){.contact-section{grid-template-columns:1fr;gap:50px;}.faq-grid{grid-template-columns:1fr;}}
+    @media(max-width:600px){.contact-section,.faq-section{padding:50px 20px;}.page-hero{padding:60px 20px;}.page-hero h1{font-size:42px;}.form-row{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header"><h2>Your Cart <span id="cartCount">(0)</span></h2><button class="cart-close" id="cartClose">×</button></div>
+    <div class="cart-items" id="cartItems"><p class="cart-empty">Your cart is empty</p></div>
+    <div class="cart-footer">
+      <p class="free-shipping">✓ Free delivery on orders over £150</p>
+      <div class="cart-total-row"><strong>Total</strong><span id="cartTotal">£0.00</span></div>
+      <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+      <button class="continue-btn" id="continueShopping">Continue Shopping</button>
+    </div>
+  </div>
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+        <nav class="nav-links" id="navLinks"><a href="products.html">Abayas</a><a href="accessories.html">Accessories</a><a href="new-in.html">New In</a><a href="about.html">About</a></nav>
+      </div>
+      <a href="index.html" class="nav-logo">Haya &amp; Noor</a>
+      <div class="nav-icons">
+        <button class="icon-btn" id="searchToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></button>
+        <a class="icon-btn" href="account.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+        <a class="icon-btn" href="wishlist.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
+        <button class="icon-btn" id="cartToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg><span class="badge" id="cartBadge">0</span></button>
+      </div>
+    </div>
+    <div class="search-bar" id="searchBar"><div class="search-container"><svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><input type="text" id="searchInput" placeholder="Search..." autocomplete="off"/><button id="searchClose">✕</button></div></div>
+  </header>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <section class="page-hero">
+    <p class="section-tag">We'd Love to Hear From You</p>
+    <h1>Contact Us</h1>
+    <p>Questions, feedback, or just want to say hello? Our team is here for you.</p>
+  </section>
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Contact Us</span></div>
+
+  <section class="contact-section">
+    <div class="contact-info">
+      <h2>Get in <span>Touch</span></h2>
+      <p>We aim to respond to all enquiries within 24 hours during business days. Whether it's a sizing question, a styling request, or anything else — we're here.</p>
+      <div class="contact-item"><div class="contact-icon">✉</div><div><h4>Email Us</h4><p><a href="mailto:hello@hayanoor.co.uk">hello@hayanoor.co.uk</a><br/>Orders: <a href="mailto:orders@hayanoor.co.uk">orders@hayanoor.co.uk</a></p></div></div>
+      <div class="contact-item"><div class="contact-icon">📱</div><div><h4>WhatsApp</h4><p>+44 7700 900 000<br/>Mon – Sat, 9am – 6pm</p></div></div>
+      <div class="contact-item"><div class="contact-icon">📍</div><div><h4>Studio</h4><p>Haya & Noor, 42 Modest Lane<br/>East London, E1 4HN<br/><em>Appointment only</em></p></div></div>
+      <div class="contact-item"><div class="contact-icon">📸</div><div><h4>Instagram DMs</h4><p><a href="https://instagram.com" target="_blank">@hayanoor.official</a><br/>For styling advice & lookbook requests</p></div></div>
+      <div class="contact-hours">
+        <h4>Customer Support Hours</h4>
+        <div class="hours-row"><span>Monday – Friday</span><span>9:00am – 6:00pm</span></div>
+        <div class="hours-row"><span>Saturday</span><span>10:00am – 4:00pm</span></div>
+        <div class="hours-row"><span>Sunday</span><span>Closed</span></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h2>Send a <span>Message</span></h2>
+      <p class="subtitle">Fill in the form and we'll get back to you as soon as possible.</p>
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="Your first name"/></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Your last name"/></div>
+      </div>
+      <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"/></div>
+      <div class="form-group"><label>Order Number (if applicable)</label><input type="text" placeholder="HN-2026-XXXX"/></div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select>
+          <option>General Enquiry</option>
+          <option>Order Issue</option>
+          <option>Returns & Exchanges</option>
+          <option>Sizing Help</option>
+          <option>Wholesale / Press</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea placeholder="How can we help you?"></textarea></div>
+      <button class="submit-btn" onclick="showToast('Message sent! We\'ll be in touch within 24 hours ✓')">Send Message</button>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="section-heading"><p class="section-tag">Quick Answers</p><h2 class="featured-title">Frequently Asked</h2></div>
+    <div class="faq-grid">
+      <div class="faq-item"><p class="faq-q">What sizes do you offer?</p><p class="faq-a">We offer sizes XS to 3XL across all collections. Our sizing guide page has full measurements to help you find the perfect fit.</p></div>
+      <div class="faq-item"><p class="faq-q">How long does delivery take?</p><p class="faq-a">UK standard delivery is 3–5 business days. Express next-day delivery is available. International orders typically arrive in 7–14 days.</p></div>
+      <div class="faq-item"><p class="faq-q">Can I return or exchange items?</p><p class="faq-a">Yes — we offer free returns within 30 days of delivery. Items must be unworn, unwashed, and in original packaging. See our Returns page for full details.</p></div>
+      <div class="faq-item"><p class="faq-q">Do you ship internationally?</p><p class="faq-a">Yes! We ship to over 40 countries. International shipping costs are calculated at checkout. Free international shipping on orders over £200.</p></div>
+      <div class="faq-item"><p class="faq-q">How do I track my order?</p><p class="faq-a">You'll receive an email with your tracking link as soon as your order ships. You can also log in to your account to check order status.</p></div>
+      <div class="faq-item"><p class="faq-q">Do you offer gift wrapping?</p><p class="faq-a">Yes — complimentary gift wrapping is available on all orders. Just select the option at checkout and we'll take care of it beautifully.</p></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand"><p class="footer-logo">Haya &amp; Noor</p><p>Luxury modest fashion, crafted <br/>with care for the modern woman.</p></div>
+      <div class="footer-col"><h4>Shop</h4><a href="products.html">Abayas</a><a href="accessories.html">Accessories</a><a href="new-in.html">New In</a></div>
+      <div class="footer-col"><h4>Help</h4><a href="returns.html">Returns</a><a href="sizing-guide.html">Sizing Guide</a><a href="shipping-info.html">Shipping Info</a><a href="contact.html">Contact Us</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Haya &amp; Noor. All rights reserved.</p><p>Designed with care. Made with love.</p></div>
+  </footer>
+  <div class="toast" id="toast"></div>
+  <script src="abaya.js"></script>
+</body>
+</html>

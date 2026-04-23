@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>New In — Haya & Noor</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    .page-hero{background:linear-gradient(135deg,#1a1410,#2d1f0e 50%,#1a1410);padding:80px 40px 60px;text-align:center;color:white;position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(201,169,110,.15),transparent 70%);}
+    .page-hero .section-tag{color:#c9a96e;position:relative;}
+    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:400;color:white;margin:12px 0;position:relative;}
+    .page-hero p{color:rgba(255,255,255,.7);font-size:16px;max-width:500px;margin:0 auto;position:relative;}
+    .breadcrumb{text-align:center;padding:14px 40px;font-size:12px;color:#888;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid #eee;}
+    .breadcrumb a{color:#888;transition:color .2s;}.breadcrumb a:hover{color:#c9a96e;}.breadcrumb span{margin:0 8px;}
+    .drop-banner{background:linear-gradient(90deg,#c9a96e,#e8c98a,#c9a96e);background-size:200%;animation:shimmer 3s infinite;text-align:center;padding:14px;font-size:12px;text-transform:uppercase;letter-spacing:2px;font-weight:600;color:#0d0d0d;}
+    @keyframes shimmer{0%,100%{background-position:0%}50%{background-position:100%}}
+    .newin-section{padding:70px 40px;max-width:1400px;margin:0 auto;}
+    .newin-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:16px;}
+    .newin-header h2{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;}
+    .newin-header h2 span{color:#c9a96e;font-style:italic;}
+    .newin-header p{color:#888;font-size:14px;}
+    .newin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+    .newin-card{background:white;transition:transform .3s,box-shadow .3s;}
+    .newin-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,.08);}
+    .newin-img-wrap{aspect-ratio:3/4;overflow:hidden;background:#f0ebe2;position:relative;}
+    .newin-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+    .newin-card:hover .newin-img-wrap img{transform:scale(1.04);}
+    .new-badge{position:absolute;top:14px;left:14px;background:#0d0d0d;color:white;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;padding:5px 10px;z-index:1;}
+    .new-badge.gold{background:#c9a96e;color:#0d0d0d;}
+    .card-wishlist{position:absolute;top:14px;right:14px;width:36px;height:36px;background:white;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .3s;z-index:1;}
+    .newin-card:hover .card-wishlist{opacity:1;}
+    .card-wishlist svg{width:16px;height:16px;}
+    .newin-body{padding:16px;}
+    .drop-label{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#c9a96e;margin-bottom:6px;}
+    .newin-body h3{font-family:'Cormorant Garamond',serif;font-size:22px;margin-bottom:6px;line-height:1.2;}
+    .newin-body p{font-size:13px;color:#888;margin-bottom:14px;}
+    .newin-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eee;padding-top:14px;}
+    .newin-footer .price{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;}
+    .newin-cart-btn{background:#0d0d0d;color:white;padding:10px 16px;font-size:11px;text-transform:uppercase;letter-spacing:1px;border:none;cursor:pointer;transition:all .3s;}
+    .newin-cart-btn:hover{background:#c9a96e;color:#0d0d0d;}
+    .drop-section{background:#fafaf8;padding:70px 40px;border-top:1px solid #eee;}
+    .drop-section .section-heading{text-align:center;margin-bottom:50px;}
+    .drop-section .featured-title{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;}
+    .timeline{max-width:700px;margin:0 auto;}
+    .timeline-item{display:flex;gap:24px;align-items:flex-start;padding-bottom:36px;position:relative;}
+    .timeline-item::before{content:'';position:absolute;left:19px;top:40px;bottom:0;width:1px;background:#e0d5c5;}
+    .timeline-item:last-child::before{display:none;}
+    .timeline-dot{width:40px;height:40px;border-radius:50%;background:white;border:2px solid #c9a96e;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;color:#c9a96e;font-weight:600;}
+    .timeline-dot.done{background:#c9a96e;color:white;}
+    .timeline-content h4{font-size:14px;font-weight:600;margin-bottom:4px;}
+    .timeline-content p{font-size:13px;color:#888;}
+    .timeline-content .date{font-size:12px;color:#c9a96e;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+    .newsletter-section{background:#0d0d0d;color:white;padding:70px 40px;text-align:center;}
+    .newsletter-section h2{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;margin-bottom:12px;}
+    .newsletter-section h2 span{color:#c9a96e;font-style:italic;}
+    .newsletter-section p{color:rgba(255,255,255,.6);font-size:15px;margin-bottom:32px;}
+    .newsletter-form{display:flex;max-width:480px;margin:0 auto;}
+    .newsletter-form input{flex:1;padding:16px 20px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.05);color:white;font-size:14px;font-family:'Jost',sans-serif;outline:none;}
+    .newsletter-form input::placeholder{color:rgba(255,255,255,.4);}
+    .newsletter-form button{padding:16px 28px;background:#c9a96e;color:#0d0d0d;font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:600;border:none;cursor:pointer;font-family:'Jost',sans-serif;}
+    .newsletter-form button:hover{background:#e8c98a;}
+    .active-link{color:#c9a96e!important;}
+    @media(max-width:900px){.newin-grid{grid-template-columns:repeat(2,1fr);}.page-hero h1{font-size:42px;}}
+    @media(max-width:600px){.newin-grid{grid-template-columns:1fr;}.newin-section,.drop-section,.newsletter-section{padding:50px 20px;}.newsletter-form{flex-direction:column;}}
+  </style>
+</head>
+<body>
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header"><h2>Your Cart <span id="cartCount">(0)</span></h2><button class="cart-close" id="cartClose">×</button></div>
+    <div class="cart-items" id="cartItems"><p class="cart-empty">Your cart is empty</p></div>
+    <div class="cart-footer">
+      <p class="free-shipping">✓ Free delivery on orders over £150</p>
+      <div class="cart-total-row"><strong>Total</strong><span id="cartTotal">£0.00</span></div>
+      <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+      <button class="continue-btn" id="continueShopping">Continue Shopping</button>
+    </div>
+  </div>
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+        <nav class="nav-links" id="navLinks">
+          <a href="products.html">Abayas</a><a href="accessories.html">Accessories</a><a href="new-in.html" class="active-link">New In</a><a href="about.html">About</a>
+        </nav>
+      </div>
+      <a href="index.html" class="nav-logo">Haya &amp; Noor</a>
+      <div class="nav-icons">
+        <button class="icon-btn" id="searchToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></button>
+        <a class="icon-btn" href="account.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+        <a class="icon-btn" href="wishlist.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
+        <button class="icon-btn" id="cartToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg><span class="badge" id="cartBadge">0</span></button>
+      </div>
+    </div>
+    <div class="search-bar" id="searchBar"><div class="search-container"><svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><input type="text" id="searchInput" placeholder="Search new arrivals..." autocomplete="off"/><button id="searchClose">✕</button></div></div>
+  </header>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <div class="drop-banner">✦ Spring / Summer 2026 Drop — New Arrivals Every Week ✦</div>
+
+  <section class="page-hero">
+    <p class="section-tag">Fresh Arrivals</p>
+    <h1>New In</h1>
+    <p>The latest additions to the Haya & Noor collection — first to drop, first to sell out.</p>
+  </section>
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>New In</span></div>
+
+  <section class="newin-section">
+    <div class="newin-header">
+      <div><h2>Latest <span>Arrivals</span></h2><p>Added this season — updated weekly</p></div>
+      <p style="font-size:13px;color:#888">Showing 8 new pieces</p>
+    </div>
+    <div class="newin-grid">
+      <article class="newin-card" data-id="201" data-price="55" data-style="closed">
+        <div class="newin-img-wrap">
+          <span class="new-badge gold">Just Dropped</span>
+          <button class="card-wishlist wishlist-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <img src="./image/closed abaya.jpg" alt="Ivory Elegance Closed Abaya"/>
+        </div>
+        <div class="newin-body"><p class="drop-label">SS26 Drop I</p><h3>Ivory Elegance Closed Abaya</h3><p>A graceful ivory abaya with refined gold accents and a timeless finish.</p><div class="newin-footer"><span class="price">£55.00</span><button class="newin-cart-btn product-cart-btn">Add to Cart</button></div></div>
+      </article>
+      <article class="newin-card" data-id="202" data-price="59" data-style="open">
+        <div class="newin-img-wrap">
+          <span class="new-badge gold">Just Dropped</span>
+          <button class="card-wishlist wishlist-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <img src="./image/everyday (purple).jpg" alt="Chiffon Flow Open Abaya"/>
+        </div>
+        <div class="newin-body"><p class="drop-label">SS26 Drop I</p><h3>Chiffon Flow Open Abaya</h3><p>Elegant layered chiffon with graceful movement and a luxurious feel.</p><div class="newin-footer"><span class="price">£59.00</span><button class="newin-cart-btn product-cart-btn">Add to Cart</button></div></div>
+      </article>
+      <article class="newin-card" data-id="203" data-price="72" data-style="kaftan">
+        <div class="newin-img-wrap">
+          <span class="new-badge">New</span>
+          <button class="card-wishlist wishlist-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <img src="./image/dubai (olive).jpg" alt="Olive Majestic Kaftan"/>
+        </div>
+        <div class="newin-body"><p class="drop-label">SS26 Drop I</p><h3>Olive Majestic Kaftan</h3><p>Rich olive tones in a flowing kaftan silhouette for formal gatherings.</p><div class="newin-footer"><span class="price">£72.00</span><button class="newin-cart-btn product-cart-btn">Add to Cart</button></div></div>
+      </article>
+      <article class="newin-card" data-id="204" data-price="62" data-style="closed">
+        <div class="newin-img-wrap">
+          <span class="new-badge">New</span>
+          <button class="card-wishlist wishlist-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+          <img src="./image/closed abaya.jpg" alt="Dusty Rose Closed Abaya"/>
+        </div>
+        <div class="newin-body"><p class="drop-label">SS26 Drop I</p><h3>Dusty Rose Closed Abaya</h3><p>Soft dusty rose with wide sleeves and an elegant wrap-front detail.</p><div class="newin-footer"><span class="price">£62.00</span><button class="newin-cart-btn product-cart-btn">Add to Cart</button></div></div>
+      </article>
+      <article class="newin-card" data-id="205" data-price="85" data-style="embellished">
+        <div class="newin-img-wrap">
+          <span class="new-badge gold">Coming Soon</span>
+          <img src="./image/rose.jpg" alt="Crystal Noir Occasion Abaya"/>
+        </div>
+        <div class="newin-body"><p class="drop-label">SS26 Drop II — 26 Apr</p><h3>Crystal Noir Occasion Abaya</h3><p>A dramatic occasion abaya with crystal-embellished neckline and full drape.</p><div class="newin-footer"><span class="price">£85.00</span><button class="newin-cart-btn" onclick="showToast('You\'ll be notified when this drops!')">Notify Me</button></div></div>
+      </article>
+      <article class="newin-card" data-id="206" data-price="95" data-style="embellished">
+        <div class="newin-img-wrap">
+          <span class="new-badge gold">Coming Soon</span>
+          <img src="./image/rose.jpg" alt="Pearl Blush Bridal Abaya"/>
+        </div>
+        <div class="newin-body"><p class="drop-label">SS26 Drop II — 26 Apr</p><h3>Pearl Blush Bridal Abaya</h3><p>Exquisite pearl-embellished bridal abaya for your most special occasions.</p><div class="newin-footer"><span class="price">£95.00</span><button class="newin-cart-btn" onclick="showToast('You\'ll be notified when this drops!')">Notify Me</button></div></div>
+      </article>
+      <article class="newin-card" data-id="207" data-price="48" data-style="open">
+        <div class="newin-img-wrap">
+          <span class="new-badge gold">Coming Soon</span>
+          <img src="./image/open abaya.jpg" alt="Summer Breeze Open Abaya"/>
+        </div>
+        <div class="newin-body"><p class="drop-label">SS26 Drop III — 3 May</p><h3>Summer Breeze Open Abaya</h3><p>Ultra-lightweight open abaya in breathable cotton blend for warm days.</p><div class="newin-footer"><span class="price">£48.00</span><button class="newin-cart-btn" onclick="showToast('You\'ll be notified when this drops!')">Notify Me</button></div></div>
+      </article>
+      <article class="newin-card" data-id="208" data-price="78" data-style="kaftan">
+        <div class="newin-img-wrap">
+          <span class="new-badge gold">Coming Soon</span>
+          <img src="./image/dubai (olive).jpg" alt="Midnight Garden Kaftan"/>
+        </div>
+        <div class="newin-body"><p class="drop-label">SS26 Drop III — 3 May</p><h3>Midnight Garden Kaftan</h3><p>Deep forest green kaftan with hand-embroidered floral motifs at hem.</p><div class="newin-footer"><span class="price">£78.00</span><button class="newin-cart-btn" onclick="showToast('You\'ll be notified when this drops!')">Notify Me</button></div></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="drop-section">
+    <div class="section-heading"><p class="section-tag">What's Next</p><h2 class="featured-title">Upcoming Drops</h2></div>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-dot done">✓</div><div class="timeline-content"><p class="date">April 12, 2026</p><h4>Drop I — Spring Essentials</h4><p>Ivory Elegance, Chiffon Flow, Olive Kaftan & Dusty Rose — now available.</p></div></div>
+      <div class="timeline-item"><div class="timeline-dot">2</div><div class="timeline-content"><p class="date">April 26, 2026</p><h4>Drop II — Occasion Collection</h4><p>Crystal Noir & Pearl Blush — luxury occasion abayas for Eid and beyond.</p></div></div>
+      <div class="timeline-item"><div class="timeline-dot">3</div><div class="timeline-content"><p class="date">May 3, 2026</p><h4>Drop III — Summer Wardrobe</h4><p>Lightweight open abayas and new kaftan designs for the warmer months.</p></div></div>
+    </div>
+  </section>
+
+  <section class="newsletter-section">
+    <h2>Never Miss a <span>Drop</span></h2>
+    <p>Subscribe to get early access to new arrivals, exclusive offers & styling inspiration.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Your email address"/>
+      <button onclick="showToast('Thank you! You\'re on the list ✓')">Subscribe</button>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand"><p class="footer-logo">Haya &amp; Noor</p><p>Luxury modest fashion, crafted <br/>with care for the modern woman.</p><div class="social-links"><a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a><a href="https://pinterest.com" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.15 1.22-5.15s-.31-.62-.31-1.55c0-1.45.84-2.54 1.88-2.54.89 0 1.32.67 1.32 1.47 0 .89-.57 2.23-.87 3.47-.24 1.03.51 1.87 1.52 1.87 1.83 0 3.23-1.93 3.23-4.71 0-2.46-1.77-4.18-4.3-4.18-2.93 0-4.65 2.2-4.65 4.47 0 .89.34 1.84.76 2.36.08.1.09.19.07.3-.08.31-.25 1.03-.28 1.17-.04.19-.14.23-.32.14-1.25-.58-2.03-2.42-2.03-3.89 0-3.15 2.29-6.05 6.61-6.05 3.47 0 6.16 2.47 6.16 5.77 0 3.45-2.17 6.22-5.19 6.22-1.01 0-1.97-.53-2.3-1.15l-.62 2.33c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.97.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg></a></div></div>
+      <div class="footer-col"><h4>Shop</h4><a href="products.html">Abayas</a><a href="accessories.html">Accessories</a><a href="new-in.html">New In</a></div>
+      <div class="footer-col"><h4>Help</h4><a href="returns.html">Returns</a><a href="sizing-guide.html">Sizing Guide</a><a href="shipping-info.html">Shipping Info</a><a href="contact.html">Contact Us</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Haya &amp; Noor. All rights reserved.</p><p>Designed with care. Made with love.</p></div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="abaya.js"></script>
+</body>
+</html>

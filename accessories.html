@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accessories — Haya & Noor</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="products-style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h2>Your Cart <span id="cartCount">(0)</span></h2>
+      <button class="cart-close" id="cartClose">×</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Your cart is empty</p>
+    </div>
+    <div class="cart-footer">
+      <p class="free-shipping">✓ Free shipping on orders over £150</p>
+      <div class="cart-total-row">
+        <strong>Total</strong>
+        <span id="cartTotal">£0.00</span>
+      </div>
+      <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+      <button class="continue-btn" id="continueShopping">Continue Shopping</button>
+    </div>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" id="navLinks">
+          <a href="products.html">Abayas</a>
+          <a href="accessories.html" class="active-link">Accessories</a>
+          <a href="new-in.html">New In</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+
+      <a href="index.html" class="nav-logo">Haya &amp; Noor</a>
+
+      <div class="nav-icons">
+        <button class="icon-btn" id="searchToggle" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        </button>
+        <a class="icon-btn" href="account.html" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a class="icon-btn" href="wishlist.html" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="badge" id="wishlistBadge">0</span>
+        </a>
+        <button class="icon-btn" id="cartToggle" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          <span class="badge" id="cartBadge">0</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="search-bar" id="searchBar">
+      <div class="search-container">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        <input type="text" id="searchInput" placeholder="Search accessories..." autocomplete="off" />
+        <button id="searchClose" aria-label="Close search">✕</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="nav-overlay" id="navOverlay"></div>
+  <main class="products-page">
+    <div class="page-header">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Accessories</span>
+      </div>
+      <h1 class="page-title">Accessories</h1>
+      <p class="page-subtitle">Complete your look with our curated collection of hijabs, pins, and modest essentials</p>
+
+      <div class="filters-bar">
+        <div class="filter-group">
+          <label>Sort by:</label>
+          <select id="sortFilter">
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="newest">Newest First</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Category:</label>
+          <div class="filter-pills">
+            <button class="pill active" data-filter="all">All</button>
+            <button class="pill" data-filter="hijabs">Hijabs</button>
+            <button class="pill" data-filter="pins">Pins</button>
+            <button class="pill" data-filter="undercaps">Undercaps</button>
+            <button class="pill" data-filter="jewelry">Jewelry</button>
+          </div>
+        </div>
+        <div class="results-count">Showing 10 products</div>
+      </div>
+    </div>
+
+    <div class="products-container">
+
+      <article class="product-card" data-id="101" data-style="hijabs" data-price="18">
+        <div class="product-image-wrap">
+          <img src="./Accessories/hijab.jpg" alt="Premium Silk Hijab" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+         
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Bestseller</span>
+          <h3 class="product-name">Premium Silk Hijab</h3>
+          <p class="product-description">Luxurious mulberry silk hijab with a subtle sheen. Lightweight and breathable, perfect for special occasions or everyday elegance. Hand-rolled edges for a refined finish.</p>
+          <div class="product-footer">
+            <span class="product-price">£18.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="102" data-style="pins" data-price="12">
+        <div class="product-image-wrap">
+          <img src="./Accessories/new mg.jpg" alt="Magnetic Hijab Pins Set" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          
+        </div>
+        <div class="product-info">
+          <span class="product-tag new">New In</span>
+          <h3 class="product-name">Magnetic Hijab Pins Set</h3>
+          <p class="product-description">Set of 4 strong magnetic pins that hold your hijab securely without snagging fabric. No holes, no damage to delicate materials. Comes in a velvet storage pouch.</p>
+          <div class="product-footer">
+            <span class="product-price">£12.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="103" data-style="undercaps" data-price="8">
+        <div class="product-image-wrap">
+          <img src="./Accessories/undecap.jpg" alt="Cotton Jersey Undercap" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Essential</span>
+          <h3 class="product-name">Cotton Jersey Undercap</h3>
+          <p class="product-description">Soft stretchy cotton undercap that keeps your hair in place all day. Breathable fabric prevents overheating. One size fits most with elasticated back.</p>
+          <div class="product-footer">
+            <span class="product-price">£8.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="104" data-style="pins" data-price="15">
+        <div class="product-image-wrap">
+          <img src="./Accessories/pearls.jpg" alt="Pearl Hijab Pins Set" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+         
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Popular</span>
+          <h3 class="product-name">Pearl Hijab Pins Set</h3>
+          <p class="product-description">Elegant set of 6 straight pins with genuine freshwater pearl heads. Adds a touch of sophistication to any hijab style. Includes protective caps for safe storage.</p>
+          <div class="product-footer">
+            <span class="product-price">£15.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="105" data-style="hijabs" data-price="12">
+        <div class="product-image-wrap">
+          <img src="./Accessories/chiffon hijab.jpg" alt="Lightweight Chiffon Hijab" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Best Value</span>
+          <h3 class="product-name">Lightweight Chiffon Hijab</h3>
+          <p class="product-description">Everyday essential chiffon scarf that drapes beautifully. Textured fabric stays in place without slipping. Large 180x70cm size for versatile styling options.</p>
+          <div class="product-footer">
+            <span class="product-price">£12.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="106" data-style="undercaps" data-price="10">
+        <div class="product-image-wrap">
+          <img src="./Accessories/bonnet cap.jpg" alt="Satin Bonnet Cap" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Hair Care</span>
+          <h3 class="product-name">Satin Bonnet Cap</h3>
+          <p class="product-description">Protective satin bonnet that keeps your hairstyle intact under hijab. Prevents frizz and breakage. Adjustable tie straps for secure fit all day long.</p>
+          <div class="product-footer">
+            <span class="product-price">£10.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="107" data-style="jewelry" data-price="22">
+        <div class="product-image-wrap">
+          <img src="./Accessories/Drop earing" alt="Gold Tassel Drop Earrings" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+         
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Trending</span>
+          <h3 class="product-name">Gold Tassel Drop Earrings</h3>
+          <p class="product-description">Elegant tassel earrings that frame your face beautifully. Lightweight enough for all-day wear. Hypoallergenic posts suitable for sensitive ears.</p>
+          <div class="product-footer">
+            <span class="product-price">£22.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="108" data-style="pins" data-price="9">
+        <div class="product-image-wrap">
+          <img src="./Accessories/decorative magnet.jpg" alt="Decorative Hijab Magnets" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+         
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Best Seller</span>
+          <h3 class="product-name">Decorative Hijab Magnets</h3>
+          <p class="product-description">Set of 8 small decorative magnets in assorted designs. Perfect for securing hijab layers or adding a decorative touch. Strong hold without damaging fabric.</p>
+          <div class="product-footer">
+            <span class="product-price">£9.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="109" data-style="hijabs" data-price="14">
+        <div class="product-image-wrap">
+          <img src="./Accessories/premium hijab .jpg" alt="Premium Modal Hijab" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Premium</span>
+          <h3 class="product-name">Premium Modal Hijab</h3>
+          <p class="product-description">Ultra-soft modal fabric that feels like cotton but drapes like silk. Breathable and moisture-wicking for all-day comfort. Opaque coverage guaranteed.</p>
+          <div class="product-footer">
+            <span class="product-price">£14.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="110" data-style="jewelry" data-price="28">
+        <div class="product-image-wrap">
+          <img src="./Accessories/A-1.jpg" alt="Pearl Cuff Bracelet" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Occasion</span>
+          <h3 class="product-name">Pearl Cuff Bracelet</h3>
+          <p class="product-description">Elegant open cuff bracelet featuring freshwater pearls and gold-tone finish. Adjustable fit suits most wrist sizes. Perfect for Eid, weddings, and special events.</p>
+          <div class="product-footer">
+            <span class="product-price">£28.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="pagination">
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn next">→</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <p class="footer-logo">Haya &amp; Noor</p>
+        <p>Luxury modest fashion, crafted<br />with care for the modern woman.</p>
+        <div class="social-links">
+          <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          </a>
+          <a href="https://pinterest.com" aria-label="Pinterest" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.15 1.22-5.15s-.31-.62-.31-1.55c0-1.45.84-2.54 1.88-2.54.89 0 1.32.67 1.32 1.47 0 .89-.57 2.23-.87 3.47-.24 1.03.51 1.87 1.52 1.87 1.83 0 3.23-1.93 3.23-4.71 0-2.46-1.77-4.18-4.3-4.18-2.93 0-4.65 2.2-4.65 4.47 0 .89.34 1.84.76 2.36.08.1.09.19.07.3-.08.31-.25 1.03-.28 1.17-.04.19-.14.23-.32.14-1.25-.58-2.03-2.42-2.03-3.89 0-3.15 2.29-6.05 6.61-6.05 3.47 0 6.16 2.47 6.16 5.77 0 3.45-2.17 6.22-5.19 6.22-1.01 0-1.97-.53-2.3-1.15l-.62 2.33c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.97.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="products.html">Abayas</a>
+        <a href="accessories.html">Accessories</a>
+        <a href="new-in.html">New In</a>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <a href="returns.html">Returns</a>
+        <a href="sizing-guide.html">Sizing Guide</a>
+        <a href="shipping-info.html">Shipping Info</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Haya &amp; Noor. All rights reserved.</p>
+      <p>Designed with care. Made with love.</p>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="abaya.js"></script>
+</body>
+</html>

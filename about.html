@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us — Haya & Noor</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    .about-hero{min-height:70vh;background:url('./image/dashboard.png') center/cover no-repeat;position:relative;display:flex;align-items:flex-end;padding:0 0 70px 0;}
+    .about-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,rgba(0,0,0,.2) 60%,transparent 100%);}
+    .about-hero-content{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 40px;color:white;}
+    .about-hero-content .section-tag{color:#c9a96e;}
+    .about-hero-content h1{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:400;line-height:1;margin:12px 0;}
+    .about-hero-content h1 span{color:#d4aa63;font-style:italic;}
+    .about-hero-content p{font-size:18px;color:rgba(255,255,255,.8);max-width:560px;line-height:1.8;}
+    .breadcrumb{text-align:center;padding:14px 40px;font-size:12px;color:#888;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid #eee;}
+    .breadcrumb a{color:#888;}.breadcrumb a:hover{color:#c9a96e;}.breadcrumb span{margin:0 8px;}
+    /* Mission */
+    .mission-section{max-width:1400px;margin:0 auto;padding:90px 40px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+    .mission-text .section-tag{color:#c9a96e;}
+    .mission-text h2{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:400;line-height:1.1;margin:14px 0 24px;}
+    .mission-text h2 span{color:#c9a96e;font-style:italic;}
+    .mission-text p{font-size:15px;color:#555;line-height:1.9;margin-bottom:18px;}
+    .mission-img{aspect-ratio:1;overflow:hidden;background:#f0ebe2;}
+    .mission-img img{width:100%;height:100%;object-fit:cover;}
+    /* Values */
+    .values-section{background:#fafaf8;padding:90px 40px;border-top:1px solid #eee;}
+    .values-section .section-heading{text-align:center;margin-bottom:60px;}
+    .values-section .featured-title{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:400;}
+    .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:1100px;margin:0 auto;}
+    .value-card{text-align:center;padding:40px 30px;background:white;border-bottom:3px solid transparent;transition:border-color .3s,transform .3s;}
+    .value-card:hover{border-color:#c9a96e;transform:translateY(-4px);}
+    .value-icon{width:56px;height:56px;background:linear-gradient(135deg,#f0ebe2,#e8dcc8);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;}
+    .value-card h3{font-family:'Cormorant Garamond',serif;font-size:26px;margin-bottom:12px;font-weight:500;}
+    .value-card p{font-size:14px;color:#777;line-height:1.8;}
+    /* Story Timeline */
+    .story-section{max-width:900px;margin:0 auto;padding:90px 40px;}
+    .story-section .section-heading{text-align:center;margin-bottom:60px;}
+    .story-section .featured-title{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:400;}
+    .story-timeline{position:relative;padding-left:40px;}
+    .story-timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,#c9a96e,#e8dcc8);}
+    .story-event{position:relative;margin-bottom:48px;padding-left:32px;}
+    .story-event::before{content:'';position:absolute;left:-44px;top:6px;width:10px;height:10px;border-radius:50%;background:#c9a96e;}
+    .story-event .year{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#c9a96e;margin-bottom:6px;}
+    .story-event h4{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;margin-bottom:8px;}
+    .story-event p{font-size:14px;color:#777;line-height:1.8;}
+    /* Founders */
+    .founders-section{background:#0d0d0d;color:white;padding:90px 40px;}
+    .founders-section .section-heading{text-align:center;margin-bottom:60px;}
+    .founders-section .section-tag{color:#c9a96e;}
+    .founders-section .featured-title{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:400;color:white;}
+    .founders-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;max-width:900px;margin:0 auto;}
+    .founder-card{text-align:center;}
+    .founder-img{width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,#2a1f0e,#3d2d14);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:52px;color:#c9a96e;border:2px solid #c9a96e;}
+    .founder-card h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;margin-bottom:6px;}
+    .founder-card .founder-title{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#c9a96e;margin-bottom:14px;}
+    .founder-card p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.8;}
+    /* Promise */
+    .promise-section{padding:90px 40px;text-align:center;background:#f2ede4;}
+    .promise-section h2{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:400;margin-bottom:18px;}
+    .promise-section h2 span{color:#c9a96e;font-style:italic;}
+    .promise-section p{font-size:16px;color:#666;max-width:600px;margin:0 auto 40px;line-height:1.9;}
+    .promise-section a{display:inline-block;padding:16px 36px;background:#0d0d0d;color:white;font-size:12px;text-transform:uppercase;letter-spacing:1.5px;transition:all .3s;}
+    .promise-section a:hover{background:#c9a96e;color:#0d0d0d;}
+    .active-link{color:#c9a96e!important;}
+    @media(max-width:900px){.mission-section{grid-template-columns:1fr;gap:40px;}.values-grid{grid-template-columns:1fr;}.founders-grid{grid-template-columns:1fr;}.about-hero-content h1{font-size:48px;}}
+    @media(max-width:600px){.about-hero-content{padding:0 24px;}.about-hero-content h1{font-size:38px;}.mission-section,.values-section,.story-section,.founders-section,.promise-section{padding:60px 24px;}}
+  </style>
+</head>
+<body>
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header"><h2>Your Cart <span id="cartCount">(0)</span></h2><button class="cart-close" id="cartClose">×</button></div>
+    <div class="cart-items" id="cartItems"><p class="cart-empty">Your cart is empty</p></div>
+    <div class="cart-footer">
+      <p class="free-shipping">✓ Free delivery on orders over £150</p>
+      <div class="cart-total-row"><strong>Total</strong><span id="cartTotal">£0.00</span></div>
+      <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+      <button class="continue-btn" id="continueShopping">Continue Shopping</button>
+    </div>
+  </div>
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+        <nav class="nav-links" id="navLinks">
+          <a href="products.html">Abayas</a><a href="accessories.html">Accessories</a><a href="new-in.html">New In</a><a href="about.html" class="active-link">About</a>
+        </nav>
+      </div>
+      <a href="index.html" class="nav-logo">Haya &amp; Noor</a>
+      <div class="nav-icons">
+        <button class="icon-btn" id="searchToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></button>
+        <a class="icon-btn" href="account.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+        <a class="icon-btn" href="wishlist.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
+        <button class="icon-btn" id="cartToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg><span class="badge" id="cartBadge">0</span></button>
+      </div>
+    </div>
+    <div class="search-bar" id="searchBar"><div class="search-container"><svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><input type="text" id="searchInput" placeholder="Search..." autocomplete="off"/><button id="searchClose">✕</button></div></div>
+  </header>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Hero -->
+  <section class="about-hero">
+    <div class="about-hero-content">
+      <p class="section-tag">Our Story</p>
+      <h1>Where Modesty<br/><span>Meets Luxury</span></h1>
+      <p>Born from a passion for elegant modest fashion — designed for the woman who wants to feel beautiful, graceful, and truly herself.</p>
+    </div>
+  </section>
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>About Us</span></div>
+
+  <!-- Mission -->
+  <section class="mission-section">
+    <div class="mission-text">
+      <p class="section-tag">Who We Are</p>
+      <h2>Crafted with <span>Purpose</span></h2>
+      <p>Haya & Noor was founded on the belief that modest fashion should never mean compromising on style. We create pieces that celebrate the modern Muslim woman — confident, elegant, and unapologetically herself.</p>
+      <p>Every abaya in our collection is thoughtfully designed with premium fabrics, refined silhouettes, and meticulous attention to detail. From everyday essentials to occasion wear, we craft for every chapter of your life.</p>
+      <p>Our name says it all — Haya, meaning modesty, and Noor, meaning light. Together, we believe in clothing that radiates both.</p>
+    </div>
+    <div class="mission-img"><img src="./image/dashboard.png" alt="Haya and Noor — Our Story"/></div>
+  </section>
+
+  <!-- Values -->
+  <section class="values-section">
+    <div class="section-heading"><p class="section-tag">What We Stand For</p><h2 class="featured-title">Our Values</h2></div>
+    <div class="values-grid">
+      <div class="value-card"><div class="value-icon">✦</div><h3>Modesty First</h3><p>We design with modesty at the heart of everything — never as an afterthought, but as the very foundation of our craft.</p></div>
+      <div class="value-card"><div class="value-icon">◆</div><h3>Premium Quality</h3><p>Every stitch, fabric, and detail is chosen with care. We believe luxury should be accessible to every modest woman.</p></div>
+      <div class="value-card"><div class="value-icon">❋</div><h3>Timeless Design</h3><p>Trends come and go. We design pieces that transcend seasons — wardrobe investments you'll wear for years to come.</p></div>
+      <div class="value-card"><div class="value-icon">♡</div><h3>Inclusivity</h3><p>Our collections are designed for women of all sizes, shapes, and backgrounds. Modest fashion is for everyone.</p></div>
+      <div class="value-card"><div class="value-icon">⬡</div><h3>Sustainability</h3><p>We source responsibly, minimise waste, and work with ethical suppliers to ensure our beautiful pieces are made beautifully.</p></div>
+      <div class="value-card"><div class="value-icon">★</div><h3>Community</h3><p>We are more than a brand — we are a community of women who uplift, inspire, and celebrate each other every day.</p></div>
+    </div>
+  </section>
+
+  <!-- Story Timeline -->
+  <section class="story-section">
+    <div class="section-heading"><p class="section-tag">Our Journey</p><h2 class="featured-title">How We Got Here</h2></div>
+    <div class="story-timeline">
+      <div class="story-event"><p class="year">2021</p><h4>The Idea is Born</h4><p>Frustrated by a lack of stylish, high-quality modest wear, two sisters begin sketching their dream abaya line from a London bedroom.</p></div>
+      <div class="story-event"><p class="year">2022</p><h4>First Collection Launches</h4><p>Haya & Noor officially launches with 6 designs. The first drop sells out within 72 hours. The community responds with overwhelming love.</p></div>
+      <div class="story-event"><p class="year">2023</p><h4>Growing the Family</h4><p>We expand to accessories, launch our signature Dubai Kaftan line, and partner with artisan embroiderers for our occasion collection.</p></div>
+      <div class="story-event"><p class="year">2024</p><h4>International Reach</h4><p>Orders arrive from over 25 countries. We are featured in Vogue Arabia and Modest Fashion Week London. The dream is becoming real.</p></div>
+      <div class="story-event"><p class="year">2025</p><h4>The New Chapter</h4><p>A flagship London pop-up, a rebrand, and our most beautiful collection yet. Haya & Noor steps into its next era.</p></div>
+      <div class="story-event"><p class="year">2026</p><h4>Today & Beyond</h4><p>A full e-commerce relaunch, new seasonal drops, and a commitment to sustainable luxury modest fashion for every woman.</p></div>
+    </div>
+  </section>
+
+  <!-- Founders -->
+  <section class="founders-section">
+    <div class="section-heading"><p class="section-tag">The Faces Behind the Brand</p><h2 class="featured-title">Meet the Founders</h2></div>
+    <div class="founders-grid">
+      <div class="founder-card">
+        <div class="founder-img">H</div>
+        <h3>Haya Al-Rashidi</h3>
+        <p class="founder-title">Co-Founder & Creative Director</p>
+        <p>Haya leads the creative vision — from fabric sourcing to final design. Her eye for elegance and love of modest styling shapes every piece we create.</p>
+      </div>
+      <div class="founder-card">
+        <div class="founder-img">N</div>
+        <h3>Noor Al-Rashidi</h3>
+        <p class="founder-title">Co-Founder & Brand Director</p>
+        <p>Noor drives the brand story, community, and customer experience. Her passion for empowering women through fashion is the heart of everything we do.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promise CTA -->
+  <section class="promise-section">
+    <p class="section-tag">Our Promise</p>
+    <h2>Wear It with <span>Confidence</span></h2>
+    <p>Every piece we create is made with love, care, and an unwavering commitment to the woman wearing it. When you wear Haya & Noor, you carry our story with you.</p>
+    <a href="products.html">Shop the Collection</a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand"><p class="footer-logo">Haya &amp; Noor</p><p>Luxury modest fashion, crafted <br/>with care for the modern woman.</p><div class="social-links"><a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg></a></div></div>
+      <div class="footer-col"><h4>Shop</h4><a href="products.html">Abayas</a><a href="accessories.html">Accessories</a><a href="new-in.html">New In</a></div>
+      <div class="footer-col"><h4>Help</h4><a href="returns.html">Returns</a><a href="sizing-guide.html">Sizing Guide</a><a href="shipping-info.html">Shipping Info</a><a href="contact.html">Contact Us</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Haya &amp; Noor. All rights reserved.</p><p>Designed with care. Made with love.</p></div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="abaya.js"></script>
+</body>
+</html>

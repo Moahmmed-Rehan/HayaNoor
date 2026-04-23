@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shipping Info — Haya & Noor</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    .page-hero{background:#0d0d0d;padding:80px 40px;text-align:center;color:white;}
+    .page-hero .section-tag{color:#c9a96e;}
+    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:400;color:white;margin:12px 0;}
+    .page-hero p{color:rgba(255,255,255,.7);font-size:15px;max-width:500px;margin:0 auto;}
+    .breadcrumb{text-align:center;padding:14px 40px;font-size:12px;color:#888;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid #eee;}
+    .breadcrumb a{color:#888;}.breadcrumb a:hover{color:#c9a96e;}.breadcrumb span{margin:0 8px;}
+    .shipping-section{max-width:1100px;margin:0 auto;padding:80px 40px;}
+    /* Shipping Options */
+    .shipping-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:60px;}
+    .shipping-card{background:white;border:1px solid #eee;padding:32px;text-align:center;transition:border-color .3s,transform .3s;}
+    .shipping-card:hover{border-color:#c9a96e;transform:translateY(-3px);}
+    .shipping-card.featured-ship{border-color:#c9a96e;position:relative;}
+    .shipping-card.featured-ship::before{content:'Most Popular';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#c9a96e;color:#0d0d0d;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;padding:4px 14px;font-weight:600;}
+    .ship-icon{font-size:36px;margin-bottom:16px;}
+    .shipping-card h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin-bottom:8px;}
+    .shipping-card .price{font-size:28px;color:#c9a96e;font-family:'Cormorant Garamond',serif;margin-bottom:8px;}
+    .shipping-card .price span{font-size:14px;font-family:'Jost',sans-serif;color:#888;}
+    .shipping-card p{font-size:13px;color:#888;line-height:1.8;}
+    /* International Table */
+    .policy-block{margin-bottom:48px;}
+    .policy-block h2{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;margin-bottom:12px;}
+    .policy-block h2 span{color:#c9a96e;font-style:italic;}
+    .policy-block p{font-size:15px;color:#555;line-height:1.9;margin-bottom:16px;}
+    .ship-table-wrap{overflow-x:auto;margin-bottom:20px;}
+    table{width:100%;border-collapse:collapse;font-size:14px;}
+    thead{background:#f2ede4;}
+    thead th{padding:14px 18px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:600;color:#0d0d0d;}
+    tbody tr{border-bottom:1px solid #eee;}
+    tbody tr:hover{background:#fafaf8;}
+    tbody td{padding:13px 18px;color:#555;}
+    tbody td:first-child{font-weight:600;color:#0d0d0d;}
+    .free-tag{background:#22c55e;color:white;font-size:10px;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:1px;}
+    /* Track Order */
+    .track-section{background:#f2ede4;padding:48px;margin-bottom:60px;}
+    .track-section h2{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:400;margin-bottom:12px;}
+    .track-section h2 span{color:#c9a96e;font-style:italic;}
+    .track-section p{font-size:14px;color:#666;margin-bottom:24px;line-height:1.8;}
+    .track-form{display:flex;gap:0;max-width:500px;}
+    .track-form input{flex:1;padding:14px 18px;border:1px solid #ddd;font-family:'Jost',sans-serif;font-size:14px;outline:none;}
+    .track-form input:focus{border-color:#c9a96e;}
+    .track-form button{padding:14px 24px;background:#0d0d0d;color:white;font-size:12px;text-transform:uppercase;letter-spacing:1px;border:none;cursor:pointer;font-family:'Jost',sans-serif;transition:background .3s;}
+    .track-form button:hover{background:#c9a96e;color:#0d0d0d;}
+    .policy-note{background:rgba(201,169,110,.12);padding:18px 22px;border-left:3px solid #c9a96e;font-size:14px;color:#666;line-height:1.8;}
+    @media(max-width:800px){.shipping-cards{grid-template-columns:1fr;}.shipping-section{padding:50px 20px;}.page-hero{padding:60px 20px;}.page-hero h1{font-size:38px;}.track-form{flex-direction:column;}}
+  </style>
+</head>
+<body>
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header"><h2>Your Cart <span id="cartCount">(0)</span></h2><button class="cart-close" id="cartClose">×</button></div>
+    <div class="cart-items" id="cartItems"><p class="cart-empty">Your cart is empty</p></div>
+    <div class="cart-footer">
+      <p class="free-shipping">✓ Free delivery on orders over £150</p>
+      <div class="cart-total-row"><strong>Total</strong><span id="cartTotal">£0.00</span></div>
+      <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+      <button class="continue-btn" id="continueShopping">Continue Shopping</button>
+    </div>
+  </div>
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+        <nav class="nav-links" id="navLinks"><a href="products.html">Abayas</a><a href="accessories.html">Accessories</a><a href="new-in.html">New In</a><a href="about.html">About</a></nav>
+      </div>
+      <a href="index.html" class="nav-logo">Haya &amp; Noor</a>
+      <div class="nav-icons">
+        <button class="icon-btn" id="searchToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></button>
+        <a class="icon-btn" href="account.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+        <a class="icon-btn" href="wishlist.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
+        <button class="icon-btn" id="cartToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg><span class="badge" id="cartBadge">0</span></button>
+      </div>
+    </div>
+    <div class="search-bar" id="searchBar"><div class="search-container"><svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><input type="text" id="searchInput" placeholder="Search..." autocomplete="off"/><button id="searchClose">✕</button></div></div>
+  </header>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <section class="page-hero">
+    <p class="section-tag">Fast & Reliable</p>
+    <h1>Shipping Info</h1>
+    <p>We ship worldwide with care. Every order is gift-wrapped and dispatched within 1–2 business days.</p>
+  </section>
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Shipping Info</span></div>
+
+  <section class="shipping-section">
+    <div class="policy-block" style="margin-bottom:40px;">
+      <h2>UK <span>Delivery</span></h2>
+      <p>All UK orders are dispatched from our London studio within 1–2 business days. Choose the delivery option that works best for you.</p>
+    </div>
+
+    <div class="shipping-cards">
+      <div class="shipping-card">
+        <div class="ship-icon">📮</div>
+        <h3>Standard</h3>
+        <div class="price">£3.99 <span>/ Free over £150</span></div>
+        <p>3–5 business days. Tracked delivery via Royal Mail. You'll receive a tracking link by email.</p>
+      </div>
+      <div class="shipping-card featured-ship">
+        <div class="ship-icon">⚡</div>
+        <h3>Express</h3>
+        <div class="price">£6.99</div>
+        <p>1–2 business days. Tracked next-day delivery via DPD. Order before 1pm for same-day dispatch.</p>
+      </div>
+      <div class="shipping-card">
+        <div class="ship-icon">🌟</div>
+        <h3>Named Day</h3>
+        <div class="price">£9.99</div>
+        <p>Choose your delivery day at checkout. Perfect for gifts or special occasions. Available Mon–Sat.</p>
+      </div>
+    </div>
+
+    <div class="policy-block">
+      <h2>International <span>Shipping</span></h2>
+      <p>We ship to over 40 countries worldwide. All international orders include tracking and are sent via a signed-for courier service.</p>
+      <div class="ship-table-wrap">
+        <table>
+          <thead><tr><th>Region</th><th>Estimated Delivery</th><th>Standard Cost</th><th>Free Shipping</th></tr></thead>
+          <tbody>
+            <tr><td>United Kingdom</td><td>3–5 business days</td><td>£3.99</td><td><span class="free-tag">Over £150</span></td></tr>
+            <tr><td>Europe (EU)</td><td>5–8 business days</td><td>£8.99</td><td><span class="free-tag">Over £200</span></td></tr>
+            <tr><td>United States & Canada</td><td>7–12 business days</td><td>£12.99</td><td><span class="free-tag">Over £250</span></td></tr>
+            <tr><td>Middle East (UAE, KSA etc.)</td><td>6–10 business days</td><td>£10.99</td><td><span class="free-tag">Over £200</span></td></tr>
+            <tr><td>Australia & New Zealand</td><td>10–14 business days</td><td>£14.99</td><td><span class="free-tag">Over £300</span></td></tr>
+            <tr><td>Rest of World</td><td>10–18 business days</td><td>£16.99</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="policy-note">📦 Please note: International customers may be subject to customs duties and import taxes, which are the responsibility of the recipient. These vary by country and are not included in our shipping costs.</div>
+    </div>
+
+    <div class="track-section">
+      <h2>Track Your <span>Order</span></h2>
+      <p>Enter your order number below to track your delivery. You can also find your tracking information in your dispatch confirmation email.</p>
+      <div class="track-form">
+        <input type="text" placeholder="Enter order number e.g. HN-2026-1234"/>
+        <button onclick="showToast('Order tracking feature coming soon!')">Track Order</button>
+      </div>
+    </div>
+
+    <div class="policy-block">
+      <h2>Order <span>Processing</span></h2>
+      <p>All orders placed before 1pm Monday–Friday are dispatched the same day. Orders placed after 1pm or on weekends will be dispatched the next business day.</p>
+      <p>During busy periods (Eid, sale events, new drops), processing times may extend by 1–2 additional business days. We'll always keep you updated via email.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand"><p class="footer-logo">Haya &amp; Noor</p><p>Luxury modest fashion, crafted <br/>with care for the modern woman.</p></div>
+      <div class="footer-col"><h4>Shop</h4><a href="products.html">Abayas</a><a href="accessories.html">Accessories</a><a href="new-in.html">New In</a></div>
+      <div class="footer-col"><h4>Help</h4><a href="returns.html">Returns</a><a href="sizing-guide.html">Sizing Guide</a><a href="shipping-info.html">Shipping Info</a><a href="contact.html">Contact Us</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Haya &amp; Noor. All rights reserved.</p><p>Designed with care. Made with love.</p></div>
+  </footer>
+  <div class="toast" id="toast"></div>
+  <script src="abaya.js"></script>
+</body>
+</html>

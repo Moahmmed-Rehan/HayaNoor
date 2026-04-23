@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wishlist — Haya & Noor</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    .page-hero{background:#f2ede4;padding:60px 40px;text-align:center;}
+    .page-hero .section-tag{color:#c9a96e;}
+    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:400;margin:12px 0 8px;}
+    .page-hero p{color:#888;font-size:15px;}
+    .breadcrumb{text-align:center;padding:14px 40px;font-size:12px;color:#888;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid #eee;}
+    .breadcrumb a{color:#888;}.breadcrumb a:hover{color:#c9a96e;}.breadcrumb span{margin:0 8px;}
+    .wishlist-section{max-width:1400px;margin:0 auto;padding:70px 40px;}
+    .wishlist-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;flex-wrap:wrap;gap:16px;}
+    .wishlist-toolbar h2{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;}
+    .wishlist-toolbar h2 span{color:#c9a96e;}
+    .clear-wishlist-btn{background:none;border:1px solid #ddd;padding:10px 18px;font-size:12px;text-transform:uppercase;letter-spacing:1px;cursor:pointer;color:#888;transition:all .3s;}
+    .clear-wishlist-btn:hover{border-color:#ef4444;color:#ef4444;}
+    #wishlistGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+    .empty-wishlist{grid-column:1/-1;text-align:center;padding:80px 40px;}
+    .empty-wishlist svg{width:64px;height:64px;color:#ddd;margin:0 auto 20px;}
+    .empty-wishlist h3{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;margin-bottom:12px;}
+    .empty-wishlist p{color:#888;font-size:15px;margin-bottom:28px;}
+    .empty-wishlist a{display:inline-block;padding:14px 28px;background:#0d0d0d;color:white;font-size:12px;text-transform:uppercase;letter-spacing:1px;transition:all .3s;}
+    .empty-wishlist a:hover{background:#c9a96e;color:#0d0d0d;}
+    /* Product card styles for wishlist items */
+    .product-card{background:white;transition:transform .3s,box-shadow .3s;position:relative;}
+    .product-card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,.08);}
+    .featured-image-wrap{aspect-ratio:3/4;overflow:hidden;background:#f0ebe2;}
+    .featured-image-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+    .product-card:hover .featured-image-wrap img{transform:scale(1.04);}
+    .featured-card-body{padding:16px;}
+    .featured-card-body h3{font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.2;margin-bottom:6px;}
+    .featured-card-body p{font-size:13px;color:#888;margin-bottom:14px;}
+    .featured-card-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eee;padding-top:14px;gap:12px;}
+    .featured-card-footer span{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;}
+    .product-cart-btn{background:#0d0d0d;color:white;padding:10px 14px;font-size:11px;text-transform:uppercase;letter-spacing:1px;border:none;cursor:pointer;transition:all .3s;}
+    .product-cart-btn:hover{background:#c9a96e;color:#0d0d0d;}
+    .remove-wishlist-btn{position:absolute;top:12px;right:12px;width:32px;height:32px;background:white;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.1);font-size:18px;color:#888;transition:all .3s;}
+    .remove-wishlist-btn:hover{background:#ef4444;color:white;}
+    /* You May Also Like */
+    .also-like{padding:70px 40px;background:#fafaf8;border-top:1px solid #eee;}
+    .also-like .section-heading{text-align:center;margin-bottom:40px;}
+    .also-like .featured-title{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;}
+    .also-like-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1400px;margin:0 auto;}
+    @media(max-width:1000px){#wishlistGrid,.also-like-grid{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:600px){#wishlistGrid,.also-like-grid{grid-template-columns:1fr;}.wishlist-section,.also-like{padding:50px 20px;}.page-hero{padding:50px 20px;}.page-hero h1{font-size:38px;}}
+  </style>
+</head>
+<body>
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header"><h2>Your Cart <span id="cartCount">(0)</span></h2><button class="cart-close" id="cartClose">×</button></div>
+    <div class="cart-items" id="cartItems"><p class="cart-empty">Your cart is empty</p></div>
+    <div class="cart-footer">
+      <p class="free-shipping">✓ Free delivery on orders over £150</p>
+      <div class="cart-total-row"><strong>Total</strong><span id="cartTotal">£0.00</span></div>
+      <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+      <button class="continue-btn" id="continueShopping">Continue Shopping</button>
+    </div>
+  </div>
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+        <nav class="nav-links" id="navLinks">
+          <a href="products.html">Abayas</a><a href="accessories.html">Accessories</a><a href="new-in.html">New In</a><a href="about.html">About</a>
+        </nav>
+      </div>
+      <a href="index.html" class="nav-logo">Haya &amp; Noor</a>
+      <div class="nav-icons">
+        <button class="icon-btn" id="searchToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></button>
+        <a class="icon-btn" href="account.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+        <a class="icon-btn" href="wishlist.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
+        <button class="icon-btn" id="cartToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg><span class="badge" id="cartBadge">0</span></button>
+      </div>
+    </div>
+    <div class="search-bar" id="searchBar"><div class="search-container"><svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><input type="text" id="searchInput" placeholder="Search..." autocomplete="off"/><button id="searchClose">✕</button></div></div>
+  </header>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <section class="page-hero">
+    <p class="section-tag">Saved for Later</p>
+    <h1>My Wishlist</h1>
+    <p>Your favourite pieces, all in one place.</p>
+  </section>
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Wishlist</span></div>
+
+  <section class="wishlist-section">
+    <div class="wishlist-toolbar">
+      <h2>Saved Pieces <span id="wishlistCountDisplay"></span></h2>
+      <button class="clear-wishlist-btn" onclick="clearWishlist()">Clear All</button>
+    </div>
+    <div id="wishlistGrid"></div>
+  </section>
+
+  <!-- You May Also Like -->
+  <section class="also-like">
+    <div class="section-heading"><p class="section-tag">Discover More</p><h2 class="featured-title">You May Also Like</h2></div>
+    <div class="also-like-grid">
+      <article class="featured-card" data-id="101" data-price="39" data-style="open">
+        <div class="featured-image-wrap"><img src="./image/open abaya.jpg" alt="Everyday Linen Open Abaya"/></div>
+        <div class="featured-card-body"><h3>Everyday Linen Open Abaya</h3><p>Breathable premium linen for a relaxed everyday look.</p><div class="featured-card-footer"><span>£39.00</span><button class="featured-cart-btn">Add to Cart</button></div></div>
+      </article>
+      <article class="featured-card" data-id="103" data-price="65" data-style="kaftan">
+        <div class="featured-image-wrap"><img src="./image/dubai (olive).jpg" alt="Royal Dubai Kaftan"/></div>
+        <div class="featured-card-body"><h3>Royal Dubai Kaftan Abaya</h3><p>Flowing kaftan design inspired by luxury Dubai modest fashion.</p><div class="featured-card-footer"><span>£65.00</span><button class="featured-cart-btn">Add to Cart</button></div></div>
+      </article>
+      <article class="featured-card" data-id="104" data-price="75" data-style="embellished">
+        <div class="featured-image-wrap"><img src="./image/rose.jpg" alt="Rose Gold Embellished"/></div>
+        <div class="featured-card-body"><h3>Rose Gold Embellished Abaya</h3><p>Hand-finished embellishment for statement occasions.</p><div class="featured-card-footer"><span>£75.00</span><button class="featured-cart-btn">Add to Cart</button></div></div>
+      </article>
+      <article class="featured-card" data-id="105" data-price="59" data-style="open">
+        <div class="featured-image-wrap"><img src="./image/everyday (purple).jpg" alt="Chiffon Flow"/></div>
+        <div class="featured-card-body"><h3>Chiffon Flow Open Abaya</h3><p>Elegant chiffon with graceful movement and luxurious feel.</p><div class="featured-card-footer"><span>£59.00</span><button class="featured-cart-btn">Add to Cart</button></div></div>
+      </article>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand"><p class="footer-logo">Haya &amp; Noor</p><p>Luxury modest fashion, crafted <br/>with care for the modern woman.</p></div>
+      <div class="footer-col"><h4>Shop</h4><a href="products.html">Abayas</a><a href="accessories.html">Accessories</a><a href="new-in.html">New In</a></div>
+      <div class="footer-col"><h4>Help</h4><a href="returns.html">Returns</a><a href="sizing-guide.html">Sizing Guide</a><a href="shipping-info.html">Shipping Info</a><a href="contact.html">Contact Us</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Haya &amp; Noor. All rights reserved.</p><p>Designed with care. Made with love.</p></div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <script src="abaya.js"></script>
+  <script>
+    function clearWishlist() {
+      if (confirm('Remove all items from your wishlist?')) {
+        wishlist = [];
+        saveWishlist();
+        renderWishlistPage();
+        updateWishlistCount();
+        showToast('Wishlist cleared');
+      }
+    }
+    // Update count display
+    const origRender = renderWishlistPage;
+    document.addEventListener('DOMContentLoaded', () => {
+      const countEl = document.getElementById('wishlistCountDisplay');
+      if (countEl) countEl.textContent = wishlist.length > 0 ? `(${wishlist.length})` : '';
+      // Show empty state
+      const grid = document.getElementById('wishlistGrid');
+      if (grid && wishlist.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-wishlist">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <h3>Your wishlist is empty</h3>
+            <p>Save pieces you love and come back to them anytime.</p>
+            <a href="products.html">Browse the Collection</a>
+          </div>`;
+      }
+    });
+  </script>
+</body>
+</html>

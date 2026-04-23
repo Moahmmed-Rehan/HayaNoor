@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sizing Guide — Haya & Noor</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    .page-hero{background:#f2ede4;padding:70px 40px;text-align:center;}
+    .page-hero .section-tag{color:#c9a96e;}
+    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:400;margin:12px 0 8px;}
+    .page-hero p{color:#888;font-size:15px;max-width:500px;margin:0 auto;}
+    .breadcrumb{text-align:center;padding:14px 40px;font-size:12px;color:#888;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid #eee;}
+    .breadcrumb a{color:#888;}.breadcrumb a:hover{color:#c9a96e;}.breadcrumb span{margin:0 8px;}
+    .sizing-section{max-width:1100px;margin:0 auto;padding:80px 40px;}
+    /* How to measure */
+    .measure-section{margin-bottom:60px;}
+    .measure-section h2{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;margin-bottom:28px;}
+    .measure-section h2 span{color:#c9a96e;font-style:italic;}
+    .measure-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+    .measure-card{background:white;padding:28px;border:1px solid #eee;text-align:center;}
+    .measure-icon{font-size:32px;margin-bottom:14px;}
+    .measure-card h4{font-size:13px;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;font-weight:600;}
+    .measure-card p{font-size:13px;color:#777;line-height:1.8;}
+    /* Size Tables */
+    .size-table-section{margin-bottom:60px;}
+    .size-table-section h2{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;margin-bottom:8px;}
+    .size-table-section h2 span{color:#c9a96e;font-style:italic;}
+    .size-table-section p{font-size:14px;color:#888;margin-bottom:28px;}
+    .size-table-wrap{overflow-x:auto;}
+    table{width:100%;border-collapse:collapse;font-size:14px;}
+    thead{background:#0d0d0d;color:white;}
+    thead th{padding:14px 20px;text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;font-weight:500;}
+    thead th:first-child{text-align:left;}
+    tbody tr{border-bottom:1px solid #eee;}
+    tbody tr:hover{background:#fafaf8;}
+    tbody td{padding:14px 20px;text-align:center;color:#555;}
+    tbody td:first-child{text-align:left;font-weight:600;color:#0d0d0d;}
+    .recommended{background:rgba(201,169,110,.08)!important;}
+    .recommended td:first-child::after{content:' ★';color:#c9a96e;font-size:12px;}
+    /* Tips */
+    .tips-section{background:#f2ede4;padding:48px;margin-bottom:0;}
+    .tips-section h2{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:400;margin-bottom:20px;}
+    .tips-section h2 span{color:#c9a96e;font-style:italic;}
+    .tips-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+    .tip-item{display:flex;gap:14px;align-items:flex-start;}
+    .tip-dot{width:8px;height:8px;border-radius:50%;background:#c9a96e;flex-shrink:0;margin-top:6px;}
+    .tip-item p{font-size:14px;color:#666;line-height:1.8;}
+    @media(max-width:700px){.measure-grid{grid-template-columns:1fr;}.tips-grid{grid-template-columns:1fr;}.sizing-section{padding:50px 20px;}.page-hero{padding:50px 20px;}.page-hero h1{font-size:38px;}}
+  </style>
+</head>
+<body>
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header"><h2>Your Cart <span id="cartCount">(0)</span></h2><button class="cart-close" id="cartClose">×</button></div>
+    <div class="cart-items" id="cartItems"><p class="cart-empty">Your cart is empty</p></div>
+    <div class="cart-footer">
+      <p class="free-shipping">✓ Free delivery on orders over £150</p>
+      <div class="cart-total-row"><strong>Total</strong><span id="cartTotal">£0.00</span></div>
+      <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+      <button class="continue-btn" id="continueShopping">Continue Shopping</button>
+    </div>
+  </div>
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+        <nav class="nav-links" id="navLinks"><a href="products.html">Abayas</a><a href="accessories.html">Accessories</a><a href="new-in.html">New In</a><a href="about.html">About</a></nav>
+      </div>
+      <a href="index.html" class="nav-logo">Haya &amp; Noor</a>
+      <div class="nav-icons">
+        <button class="icon-btn" id="searchToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg></button>
+        <a class="icon-btn" href="account.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+        <a class="icon-btn" href="wishlist.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></a>
+        <button class="icon-btn" id="cartToggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg><span class="badge" id="cartBadge">0</span></button>
+      </div>
+    </div>
+    <div class="search-bar" id="searchBar"><div class="search-container"><svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg><input type="text" id="searchInput" placeholder="Search..." autocomplete="off"/><button id="searchClose">✕</button></div></div>
+  </header>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <section class="page-hero">
+    <p class="section-tag">Find Your Perfect Fit</p>
+    <h1>Sizing Guide</h1>
+    <p>Every abaya is designed to be fluid and graceful. Use this guide to find the fit that feels just right for you.</p>
+  </section>
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Sizing Guide</span></div>
+
+  <section class="sizing-section">
+    <div class="measure-section">
+      <h2>How to <span>Measure</span></h2>
+      <div class="measure-grid">
+        <div class="measure-card"><div class="measure-icon">📏</div><h4>Chest / Bust</h4><p>Measure around the fullest part of your chest, keeping the tape measure parallel to the ground.</p></div>
+        <div class="measure-card"><div class="measure-icon">⭕</div><h4>Waist</h4><p>Measure around your natural waistline, which is the narrowest part of your torso.</p></div>
+        <div class="measure-card"><div class="measure-icon">📐</div><h4>Hips</h4><p>Measure around the fullest part of your hips, approximately 20cm below your waistline.</p></div>
+        <div class="measure-card"><div class="measure-icon">↕</div><h4>Length / Height</h4><p>Stand straight and measure from the top of your shoulder to where you'd like the abaya to fall.</p></div>
+        <div class="measure-card"><div class="measure-icon">💪</div><h4>Sleeve Length</h4><p>Measure from the shoulder seam down to your wrist bone with your arm slightly bent.</p></div>
+        <div class="measure-card"><div class="measure-icon">✦</div><h4>Pro Tip</h4><p>Always measure over light clothing or lingerie. Have someone help you for the most accurate measurements.</p></div>
+      </div>
+    </div>
+
+    <div class="size-table-section">
+      <h2>Abaya <span>Size Chart</span></h2>
+      <p>All measurements are in centimetres (cm). If you're between sizes, we recommend sizing up for a more comfortable, modest fit.</p>
+      <div class="size-table-wrap">
+        <table>
+          <thead><tr><th>Size</th><th>UK Size</th><th>Chest (cm)</th><th>Waist (cm)</th><th>Hips (cm)</th><th>Length (cm)</th><th>Sleeve (cm)</th></tr></thead>
+          <tbody>
+            <tr><td>XS</td><td>6–8</td><td>82–86</td><td>62–66</td><td>88–92</td><td>140–143</td><td>58–60</td></tr>
+            <tr><td>S</td><td>8–10</td><td>87–92</td><td>67–72</td><td>93–98</td><td>142–145</td><td>60–62</td></tr>
+            <tr class="recommended"><td>M</td><td>12–14</td><td>93–98</td><td>73–78</td><td>99–104</td><td>144–147</td><td>62–64</td></tr>
+            <tr><td>L</td><td>14–16</td><td>99–106</td><td>79–86</td><td>105–112</td><td>146–149</td><td>63–65</td></tr>
+            <tr><td>XL</td><td>18–20</td><td>107–114</td><td>87–94</td><td>113–120</td><td>148–151</td><td>64–66</td></tr>
+            <tr><td>2XL</td><td>22–24</td><td>115–122</td><td>95–102</td><td>121–128</td><td>150–153</td><td>65–67</td></tr>
+            <tr><td>3XL</td><td>26–28</td><td>123–130</td><td>103–110</td><td>129–136</td><td>152–155</td><td>66–68</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:13px;color:#aaa;margin-top:12px;">★ M is our most popular size. All abayas are designed with a generous, modest fit.</p>
+    </div>
+
+    <div class="size-table-section">
+      <h2>Kaftan <span>Size Chart</span></h2>
+      <p>Kaftans are designed with a more relaxed, flowing fit. These are kaftan-specific measurements.</p>
+      <div class="size-table-wrap">
+        <table>
+          <thead><tr><th>Size</th><th>UK Size</th><th>Chest (cm)</th><th>Full Length (cm)</th><th>Sleeve (cm)</th></tr></thead>
+          <tbody>
+            <tr><td>XS / S</td><td>6–10</td><td>88–96</td><td>138–144</td><td>60–63</td></tr>
+            <tr class="recommended"><td>M / L</td><td>12–16</td><td>97–108</td><td>142–148</td><td>62–65</td></tr>
+            <tr><td>XL / 2XL</td><td>18–24</td><td>109–124</td><td>146–152</td><td>64–67</td></tr>
+            <tr><td>3XL</td><td>26–28</td><td>125–132</td><td>150–155</td><td>66–68</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div style="max-width:1100px;margin:0 auto;padding:0 40px 80px;">
+    <div class="tips-section">
+      <h2>Styling <span>Tips</span></h2>
+      <div class="tips-grid">
+        <div class="tip-item"><div class="tip-dot"></div><p>For taller women (5'8"+), consider our Long Length option available on selected styles — email us to request.</p></div>
+        <div class="tip-item"><div class="tip-dot"></div><p>Open abayas can be worn open over outfits or fastened with a belt for a structured look.</p></div>
+        <div class="tip-item"><div class="tip-dot"></div><p>If in doubt between two sizes, always size up — our abayas are designed to be worn modestly and comfortably.</p></div>
+        <div class="tip-item"><div class="tip-dot"></div><p>Kaftans are one-size-fits-a-range — if your measurements fall between two, the kaftan will still drape beautifully.</p></div>
+        <div class="tip-item"><div class="tip-dot"></div><p>All fabrics are pre-washed and tested for minimal shrinkage. Wash in cold water to preserve colour and shape.</p></div>
+        <div class="tip-item"><div class="tip-dot"></div><p>Not sure? Email us at hello@hayanoor.co.uk with your measurements and we'll personally recommend your perfect size.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand"><p class="footer-logo">Haya &amp; Noor</p><p>Luxury modest fashion, crafted <br/>with care for the modern woman.</p></div>
+      <div class="footer-col"><h4>Shop</h4><a href="products.html">Abayas</a><a href="accessories.html">Accessories</a><a href="new-in.html">New In</a></div>
+      <div class="footer-col"><h4>Help</h4><a href="returns.html">Returns</a><a href="sizing-guide.html">Sizing Guide</a><a href="shipping-info.html">Shipping Info</a><a href="contact.html">Contact Us</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="about.html">About Us</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Haya &amp; Noor. All rights reserved.</p><p>Designed with care. Made with love.</p></div>
+  </footer>
+  <div class="toast" id="toast"></div>
+  <script src="abaya.js"></script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop Abayas — Haya & Noor</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="products-style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  
+  <!-- Cart Drawer -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h2>Your Cart <span id="cartCount">(0)</span></h2>
+    <button class="cart-close" id="cartClose">×</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty">Your cart is empty</p>
+  </div>
+  <div class="cart-footer">
+    <p class="free-shipping">✓ Free shipping on orders over £150</p>
+    <div class="cart-total-row">
+      <strong>Total</strong>
+      <span id="cartTotal">£0.00</span>
+    </div>
+    <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+    <button class="continue-btn" id="continueShopping">Continue Shopping</button>
+  </div>
+</div>
+  
+  <!-- Navbar -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav-links" id="navLinks">
+          <a href="products.html" class="active-link">Abayas</a>
+          <a href="accessories.html">Accessories</a>
+          <a href="new-in.html">New In</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+
+      <a href="index.html" class="nav-logo">Haya &amp; Noor</a>
+
+      <div class="nav-icons">
+        <button class="icon-btn" id="searchToggle" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        </button>
+        <a class="icon-btn" href="account.html" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a class="icon-btn" href="wishlist.html" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="badge" id="wishlistBadge">0</span>
+        </a>
+        <button class="icon-btn" id="cartToggle" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          <span class="badge" id="cartBadge">0</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="search-bar" id="searchBar">
+      <div class="search-container">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        <input type="text" id="searchInput" placeholder="Search abayas..." autocomplete="off" />
+        <button id="searchClose" aria-label="Close search">✕</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- Main Content -->
+  <main class="products-page">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <span>Abayas</span>
+      </div>
+      <h1 class="page-title">Our Abaya Collection</h1>
+      <p class="page-subtitle">Elegant modest wear for every occasion — from everyday essentials to statement pieces</p>
+
+      <!-- Filters -->
+      <div class="filters-bar">
+        <div class="filter-group">
+          <label>Sort by:</label>
+          <select id="sortFilter">
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="newest">Newest First</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Style:</label>
+          <div class="filter-pills">
+            <button class="pill active" data-filter="all">All</button>
+            <button class="pill" data-filter="open">Open Abayas</button>
+            <button class="pill" data-filter="closed">Closed Abayas</button>
+            <button class="pill" data-filter="kaftan">Kaftans</button>
+            <button class="pill" data-filter="embellished">Embellished</button>
+          </div>
+        </div>
+        <div class="results-count">Showing 10 products</div>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-container">
+
+      <article class="product-card" data-id="1" data-style="open" data-price="45">
+        <div class="product-image-wrap">
+          <img src="./image/Screenshot 2026-04-17 193138.jpg" alt="Midnight Butterfly Open Abaya" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="color-options">
+            <button class="color-btn active" style="background-color: #0d0d0d;" data-color="Black" data-image="./image/midnight (black).jpg" aria-label="Black"></button>
+            <button class="color-btn" style="background-color: #2c3e50;" data-color="Navy" data-image="./image/Screenshot 2026-04-17 193138.jpg" aria-label="Navy"></button>
+            <button class="color-btn" style="background-color: #5d4e37;" data-color="Mocha" data-image="./image/midnight (brown).jpg" aria-label="Mocha"></button>
+            <button class="color-btn" style="background-color: #8b7355;" data-color="Taupe" data-image="./image/midnight (white).jpg" aria-label="Taupe"></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Bestseller</span>
+          <h3 class="product-name">Midnight Butterfly Open Abaya</h3>
+          <p class="product-description">Flowing open-front abaya with subtle butterfly sleeves. Perfect layering piece for both casual and formal occasions. Crafted from lightweight Nidha fabric that drapes beautifully.</p>
+          <div class="product-footer">
+            <span class="product-price">£45.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="2" data-style="closed" data-price="55">
+        <div class="product-image-wrap">
+          <img src="./image/closed abaya.jpg" alt="Ivory Elegance Closed Abaya" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="color-options">
+            <button class="color-btn active" style="background-color: #f5f5dc;" data-color="Ivory" aria-label="Ivory"></button>
+            <button class="color-btn" style="background-color: #0d0d0d;" data-color="Black" aria-label="Black"></button>
+            <button class="color-btn" style="background-color: #e8d4a8;" data-color="Champagne" aria-label="Champagne"></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag new">New In</span>
+          <h3 class="product-name">Ivory Elegance Closed Abaya</h3>
+          <p class="product-description">Elegant closed abaya in lustrous ivory with delicate gold piping along the cuffs and hem. Features a subtle A-line silhouette that flatters all body types.</p>
+          <div class="product-footer">
+            <span class="product-price">£55.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="3" data-style="embellished" data-price="75">
+        <div class="product-image-wrap">
+          <img src="./image/rose.jpg" alt="Rose Gold Embellished Abaya" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="color-options">
+            <button class="color-btn active" style="background-color: #b76e79;" data-color="Rose Gold" aria-label="Rose Gold"></button>
+            <button class="color-btn" style="background-color: #c9a96e;" data-color="Gold" aria-label="Gold"></button>
+            <button class="color-btn" style="background-color: #c0c0c0;" data-color="Silver" aria-label="Silver"></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag limited">Limited Edition</span>
+          <h3 class="product-name">Rose Gold Embellished Abaya</h3>
+          <p class="product-description">Statement abaya featuring hand-sewn rose gold beadwork along the neckline and sleeves. Made from premium chiffon with a satin underlay for modest coverage.</p>
+          <div class="product-footer">
+            <span class="product-price">£75.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="4" data-style="kaftan" data-price="65">
+        <div class="product-image-wrap">
+          <img src="./image/dubai (olive).jpg" alt="Royal Dubai Kaftan Abaya" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="color-options">
+            <button class="color-btn active" style="background-color: #0d0d0d;" data-color="Black" aria-label="Black"></button>
+            <button class="color-btn" style="background-color: #1e3a5f;" data-color="Midnight Blue" aria-label="Midnight Blue"></button>
+            <button class="color-btn" style="background-color: #4a6741;" data-color="Olive" aria-label="Olive"></button>
+            <button class="color-btn" style="background-color: #722f37;" data-color="Burgundy" aria-label="Burgundy"></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Popular</span>
+          <h3 class="product-name">Royal Dubai Kaftan Abaya</h3>
+          <p class="product-description">Flowing kaftan-style abaya with wide sleeves and subtle pleating. Inspired by Dubai's modern modest fashion scene. Features side pockets and a matching fabric belt.</p>
+          <div class="product-footer">
+            <span class="product-price">£65.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="5" data-style="open" data-price="39">
+        <div class="product-image-wrap">
+          <img src="./image/open abaya.jpg" alt="Everyday Linen Open Abaya" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="color-options">
+            <button class="color-btn active" style="background-color: #e5ddd0;" data-color="Natural" aria-label="Natural"></button>
+            <button class="color-btn" style="background-color: #fafaf8;" data-color="White" aria-label="White"></button>
+            <button class="color-btn" style="background-color: #d4c4b0;" data-color="Sand" aria-label="Sand"></button>
+            <button class="color-btn" style="background-color: #8b7355;" data-color="Camel" aria-label="Camel"></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Essential</span>
+          <h3 class="product-name">Everyday Linen Open Abaya</h3>
+          <p class="product-description">Breathable premium linen abaya perfect for warm days. Relaxed fit with dropped shoulders and side slits for easy movement. Your everyday modest essential.</p>
+          <div class="product-footer">
+            <span class="product-price">£39.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="6" data-style="embellished" data-price="85">
+        <div class="product-image-wrap">
+          <img src="./image/occasian.jpg" alt="Pearl Embroidered occasion Abaya" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="color-options">
+            <button class="color-btn active" style="background-color: #0d0d0d;" data-color="Black" aria-label="Black"></button>
+            <button class="color-btn" style="background-color: #1a1a2e;" data-color="Midnight" aria-label="Midnight"></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag exclusive">Occasion Wear</span>
+          <h3 class="product-name">Pearl Embroidered Occasion Abaya</h3>
+          <p class="product-description">Luxurious occasion abaya featuring intricate pearl and crystal embroidery on the bodice and cuffs. Made from heavy crepe that holds its shape beautifully for special events.</p>
+          <div class="product-footer">
+            <span class="product-price">£85.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="7" data-style="closed" data-price="49">
+        <div class="product-image-wrap">
+          <img src="./image/comfort.jpg" alt="Cotton Comfort Closed Abaya" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="color-options">
+            <button class="color-btn active" style="background-color: #0d0d0d;" data-color="Black" aria-label="Black"></button>
+            <button class="color-btn" style="background-color: #2c3e50;" data-color="Navy" aria-label="Navy"></button>
+            <button class="color-btn" style="background-color: #5d4e37;" data-color="Coffee" aria-label="Coffee"></button>
+            <button class="color-btn" style="background-color: #4a6741;" data-color="Sage" aria-label="Sage"></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Best Value</span>
+          <h3 class="product-name">Cotton Comfort Closed Abaya</h3>
+          <p class="product-description">Soft, breathable cotton abaya with a relaxed straight cut. Features hidden front pockets and elasticated cuffs. Perfect for daily wear, travel, and prayer.</p>
+          <div class="product-footer">
+            <span class="product-price">£49.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="8" data-style="open" data-price="59">
+        <div class="product-image-wrap">
+          <img src="./image/everyday (purple).jpg" alt="Chiffon Flow Open Abaya" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="color-options">
+            <button class="color-btn active" style="background-color: #e8d4a8;" data-color="Champagne" aria-label="Champagne"></button>
+            <button class="color-btn" style="background-color: #f5f5dc;" data-color="Cream" aria-label="Cream"></button>
+            <button class="color-btn" style="background-color: #d4a5a5;" data-color="Dusty Rose" aria-label="Dusty Rose"></button>
+            <button class="color-btn" style="background-color: #b0c4de;" data-color="Powder Blue" aria-label="Powder Blue"></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag new">New Season</span>
+          <h3 class="product-name">Chiffon Flow Open Abaya</h3>
+          <p class="product-description">Ethereal layered chiffon abaya that moves gracefully with every step. Features a built-in slip dress and sheer outer layer. The perfect summer wedding guest outfit.</p>
+          <div class="product-footer">
+            <span class="product-price">£59.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="9" data-style="kaftan" data-price="72">
+        <div class="product-image-wrap">
+          <img src="./image/best.jpeg" alt="Satin Luxe Kaftan" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="color-options">
+            <button class="color-btn active" style="background-color: #0d0d0d;" data-color="Black" aria-label="Black"></button>
+            <button class="color-btn" style="background-color: #1e3a5f;" data-color="Navy" aria-label="Navy"></button>
+            <button class="color-btn" style="background-color: #722f37;" data-color="Burgundy" aria-label="Burgundy"></button>
+            <button class="color-btn" style="background-color: #2f4f4f;" data-color="Forest" aria-label="Forest"></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Eid Collection</span>
+          <h3 class="product-name">Satin Luxe Kaftan</h3>
+          <p class="product-description">Opulent satin kaftan with a subtle sheen that catches the light beautifully. Features a mandarin collar, hidden zip front, and gold button details. Perfect for Eid celebrations.</p>
+          <div class="product-footer">
+            <span class="product-price">£72.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card" data-id="10" data-style="closed" data-price="42">
+        <div class="product-image-wrap">
+          <img src="./image/sporty.jpeg" alt="Everyday Hooded Abaya" loading="lazy" />
+          <div class="product-overlay"><button class="quick-view-btn">Quick View</button></div>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="color-options">
+            <button class="color-btn active" style="background-color: #0d0d0d;" data-color="Black" aria-label="Black"></button>
+            <button class="color-btn" style="background-color: #2c3e50;" data-color="Navy" aria-label="Navy"></button>
+            <button class="color-btn" style="background-color: #5d4e37;" data-color="Mocha" aria-label="Mocha"></button>
+          </div>
+        </div>
+        <div class="product-info">
+          <span class="product-tag">Activewear</span>
+          <h3 class="product-name">Everyday Hooded Abaya</h3>
+          <p class="product-description">Modern hooded abaya designed for comfort and everyday wear. Made from breathable, soft fabric with a relaxed silhouette, practical side pockets, and an easy front zip for effortless styling.</p>
+          <div class="product-footer">
+            <span class="product-price">£42.00</span>
+            <button class="add-to-cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn">3</button>
+      <span class="page-ellipsis">...</span>
+      <button class="page-btn">12</button>
+      <button class="page-btn next">→</button>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <p class="footer-logo">Haya &amp; Noor</p>
+        <p>Luxury modest fashion, crafted<br />with care for the modern woman.</p>
+        <div class="social-links">
+          <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+          </a>
+          <a href="https://pinterest.com" aria-label="Pinterest" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.15 1.22-5.15s-.31-.62-.31-1.55c0-1.45.84-2.54 1.88-2.54.89 0 1.32.67 1.32 1.47 0 .89-.57 2.23-.87 3.47-.24 1.03.51 1.87 1.52 1.87 1.83 0 3.23-1.93 3.23-4.71 0-2.46-1.77-4.18-4.3-4.18-2.93 0-4.65 2.2-4.65 4.47 0 .89.34 1.84.76 2.36.08.1.09.19.07.3-.08.31-.25 1.03-.28 1.17-.04.19-.14.23-.32.14-1.25-.58-2.03-2.42-2.03-3.89 0-3.15 2.29-6.05 6.61-6.05 3.47 0 6.16 2.47 6.16 5.77 0 3.45-2.17 6.22-5.19 6.22-1.01 0-1.97-.53-2.3-1.15l-.62 2.33c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.97.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="products.html">Abayas</a>
+        <a href="accessories.html">Accessories</a>
+        <a href="new-in.html">New In</a>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <a href="returns.html">Returns</a>
+        <a href="sizing-guide.html">Sizing Guide</a>
+        <a href="shipping-info.html">Shipping Info</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Haya &amp; Noor. All rights reserved.</p>
+      <p>Designed with care. Made with love.</p>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="abaya.js"></script>
+</body>
+</html>
